@@ -1,0 +1,10 @@
+.App {
+  text-align: left;
+  color: #44637f;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
