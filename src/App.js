@@ -6,9 +6,7 @@ import Main from './components/main/Main'
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Route path="/" exact component={Main}/>
-      </Router>
+      <Main />
     </div>
   );
 }
