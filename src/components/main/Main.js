@@ -2,11 +2,12 @@ import React from 'react'
 import { Row, Col } from 'reactstrap'
 import Right from './Right'
 import resume from '../../pdf/resume.pdf'
+import { motion } from 'framer-motion'
 
 export default () => {
   return (
     <div className="container-fluid">
-      <aside className="container" style={styles.container}>
+      <motion.aside initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="container" style={styles.container}>
         {/* LEFT ASIDE */}
         <Row>
           <Col style={styles.leftAside} md={5} lg={5}>
@@ -61,7 +62,7 @@ export default () => {
             <Right />
           </Col>
         </Row>
-      </aside>
+      </motion.aside>
     </div>
   )
 }
@@ -126,11 +127,11 @@ const styles = {
     color: "#fff",
     marginLeft: 60,
     marginBottom: 0,
-    marginTop:40
+    marginTop: 40
   },
 
   techImg: {
     marginTop: 10,
-    marginRight:10
+    marginRight: 10
   }
 }

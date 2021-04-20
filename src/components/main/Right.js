@@ -1,7 +1,14 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
+import { motion } from 'framer-motion'
+import { InView } from 'react-intersection-observer'
 
 export default () => {
+
+  const variant = {
+    hidden: { x: 400, opacity: 0, scale: 0.2 },
+    visible: { x: 0, opacity: 1, scale: 1 }
+  }
   return (
     <div style={styles.rightAside} className="container">
       <Row >
@@ -15,14 +22,17 @@ export default () => {
       <Row>
         <Col >
           <hr style={{ marginTop: 70 }} />
-          <div style={styles.tech}>
-            <img style={styles.techImg} width="100%" src="/assets/images/react.png" alt="mern stack" />
-            <img style={styles.techImg} width="100%" src="/assets/images/mongo.png" alt="mern stack" />
-            <img style={styles.techImg} width="100%" src="/assets/images/express.png" alt="mern stack" />
-            <img style={styles.techImg} width="100%" src="/assets/images/node.png" alt="mern stack" />
-            <hr style={{ marginBottom: 50 }} />
-            {/* <img style={styles.techImg} width="100%" src="/assets/images/five.svg" alt="mern stack" /> */}
-          </div>
+          <InView threshold={0.15} triggerOnce={true}>
+            {({ ref, inView }) => (
+              <motion.div ref={ref} variants={variant} initial="hidden" animate={inView ? "visible" : "hidden"} transition={{ duration: 1 }} style={styles.tech} >
+                <motion.img style={styles.techImg} width="100%" src="/assets/images/react.png" alt="mern stack" />
+                <motion.img style={styles.techImg} width="100%" src="/assets/images/mongo.png" alt="mern stack" />
+                <motion.img style={styles.techImg} width="100%" src="/assets/images/express.png" alt="mern stack" />
+                <motion.img style={styles.techImg} width="100%" src="/assets/images/node.png" alt="mern stack" />
+                <hr style={{ marginBottom: 50 }} />
+              </motion.div>
+            )}
+          </InView>
         </Col>
       </Row>
     </div>
@@ -47,7 +57,7 @@ const styles = {
   },
 
   tech: {
-    padding: "50px 150px",
+    padding: window.innerWidth > 500 ? "50px 150px" : 0,
     position: "relative",
     left: 0
   },
